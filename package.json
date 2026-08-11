@@ -1,0 +1,48 @@
+{
+  "name": "tcs-calc",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "deploy": "surge dist/ Civil42.surge.sh",
+    "dev": "vite --host",
+    "preview": "vite preview",
+    "build": "npm-run-all clean -p check:* bundle",
+    "clean": "rm -rf dist",
+    "check:test": "vitest --run",
+    "check:types": "tsc -b",
+    "bundle": "run-s build:*",
+    "build:bundle": "git describe > src/version.txt; vite build",
+    "build:icons": "pwa-assets-generator --root dist --preset minimal-2023 icon.png",
+    "build:z-clean": "rm -f vite.config.d.ts vite.config.js tsconfig*.tsbuildinfo"
+  },
+  "dependencies": {
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^18.0.18",
+    "@types/react-dom": "^18.0.6",
+    "@vite-pwa/assets-generator": "^1.0.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "jsdom": "^29.0.1",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-audio-voice-recorder": "^2.2.0",
+    "react-dom": "^18.2.0",
+    "remeda": "^2.33.7",
+    "typescript": "^6.0.2",
+    "use-geo-location": "^1.0.1",
+    "vite": "8.0.3",
+    "vite-plugin-pwa": "^1.2.0",
+    "vitest": "^4.1.2"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  },
+  "devDependencies": {
+    "surge": "^0.27.3"
+  }
+}
